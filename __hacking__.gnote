@@ -1,0 +1,33 @@
+ºBASICº
+redux/index.js
+
+  store = Redux.createStore(
+  store.subscribe(() => {
+    const lastAction = store.getState().lastAction
+    emitter.emit(lastAction.type, lastAction)
+  })
+
+  // emitter listens on UPSERT_PAGE CRETE_NODE UPDATE_NODE 
+  
+redux/actions.js
+  actions.upsertPage = (page, plugin = ``) => {
+    return { type: `UPSERT_PAGE`,
+
+# bootstrap/index.js
+  const flattenedPlugins = await loadPlugins(config)
+  await require(`../schema`)()
+  await apiRunnerNode(`createPages`, { graphql: graphqlRunner })   // plugin exports.createPages graphql
+
+# query-runner/page-query-runner.js     // page exports.pageQuery graphql
+  return queryRunner(page, component)
+    result = await graphql(component.query, { ...page, ...page.context })
+    
+# schema/infer-graphql-type.js     
+  
+  
+1. call `upsertPage` to create page.
+  in bootstrap/internal-plugins/component-page-creator/gatsby-node.js   // create pages in /pages folder
+2. listen on `UPSERT_PAGE` event
+  - query-runner/query-watcher.js     // add page, query to state.components
+  - query-runner/page-writer.js       // write page informations in cache
+  - redux/plugin-runner.js            // call onUpdatePage plugin api.
